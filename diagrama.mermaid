@@ -5,7 +5,7 @@ sequenceDiagram
     Client->>Server: TCP SYN
     Server->>Client: TCP SYN-ACK
     Client->>Server: TCP ACK
-    Note over Client,Server: TCP Connection Established
+    Note over Client,Server: Conexión TCP establecida
     
     Server->>Client: 220 Welcome to FTP service
     Client->>Server: USER 15
@@ -13,7 +13,7 @@ sequenceDiagram
     Client->>Server: PASS SiniestroFuego
     Server->>Client: 530 Login incorrect
     
-    Note over Client,Server: Login Attempts Repeated
+    Note over Client,Server: Intentos de loggin
     
     Client->>Server: USER grupo15
     Server->>Client: 331 Please specify the password
@@ -34,7 +34,7 @@ sequenceDiagram
     
     Client->>Server: RETR /preguntas.txt
     Server->>Client: 150 Opening BINARY mode data connection
-    Note over Client,Server: File Transfer Occurs
+    Note over Client,Server: Comienza transferencia de archivo/datos
     Server->>Client: 226 Transfer complete
     
     Client->>Server: QUIT
@@ -43,4 +43,4 @@ sequenceDiagram
     Client->>Server: TCP FIN
     Server->>Client: TCP FIN-ACK
     Client->>Server: TCP ACK
-    Note over Client,Server: TCP Connection Closed
+    Note over Client,Server: Conexión TCP finalizada
