@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant Client as Client (192.168.1.100)
+    participant Server as Server (192.168.1.188)
+    
+    Client->>Server: TCP SYN
+    Server->>Client: TCP SYN-ACK
+    Client->>Server: TCP ACK
+    Note over Client,Server: TCP Connection Established
+    
+    Server->>Client: 220 Welcome to FTP service
+    Client->>Server: USER 15
+    Server->>Client: 331 Please specify the password
+    Client->>Server: PASS SiniestroFuego
+    Server->>Client: 530 Login incorrect
+    
+    Note over Client,Server: Login Attempts Repeated
+    
+    Client->>Server: USER grupo15
+    Server->>Client: 331 Please specify the password
+    Client->>Server: PASS SiniestroFuego
+    Server->>Client: 230 Login successful
+    
+    Client->>Server: FEAT
+    Server->>Client: 211-Features: (List of supported features)
+    
+    Client->>Server: PASV
+    Server->>Client: 227 Entering Passive Mode
+    
+    Client->>Server: TYPE I
+    Server->>Client: 200 Switching to Binary mode
+    
+    Client->>Server: SIZE /preguntas.txt
+    Server->>Client: 213 1719
+    
+    Client->>Server: RETR /preguntas.txt
+    Server->>Client: 150 Opening BINARY mode data connection
+    Note over Client,Server: File Transfer Occurs
+    Server->>Client: 226 Transfer complete
+    
+    Client->>Server: QUIT
+    Server->>Client: 221 Goodbye
+    
+    Client->>Server: TCP FIN
+    Server->>Client: TCP FIN-ACK
+    Client->>Server: TCP ACK
+    Note over Client,Server: TCP Connection Closed
